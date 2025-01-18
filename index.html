@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Przycisk STOP</title>
+    <style>
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #ff1a1a;
+        }
+    </style>
+</head>
+<body>
+    <button id="stopButton">STOP</button>
+
+    <script>
+        const webhookURL = "https://discord.com/api/webhooks/1330287347874533517/Qy4wwfKnWAtgXo2VtATd6kySUfV7rlLL-b-_qH1OiE3lqgQI-E8QeEbEqS8iYf3IMtEZ";
+
+        document.getElementById("stopButton").addEventListener("click", () => {
+            // Wyświetlenie komunikatu w przeglądarce
+            alert("STOP kliknięty!");
+
+            // Wysłanie danych do webhooka Discorda
+            const payload = {
+                content: "Przycisk STOP został kliknięty!",
+            };
+
+            fetch(webhookURL, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(payload),
+            }).catch(error => {
+                console.error("Wystąpił błąd podczas wysyłania do webhooka:", error);
+            });
+        });
+    </script>
+</body>
+</html>
